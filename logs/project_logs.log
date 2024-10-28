@@ -1,0 +1,53 @@
+2024-10-27 19:29:34,408 [INFO] steps.ingest_data: Ingesting data from C:\Users\vamsh\OneDrive\Desktop\Mlops_Financial\data\fraud_detection_dataset.csv
+2024-10-27 19:30:20,827 [INFO] src.model_dev: Model Training completed
+2024-10-27 19:30:20,835 [INFO] steps.model_train: Model saved at saved_model\model.pkl
+2024-10-27 19:30:23,504 [INFO] src.evaluation: Calculating Accuracy
+2024-10-27 19:30:23,521 [INFO] src.evaluation: Accuracy: 0.9638775
+2024-10-27 19:30:23,626 [INFO] src.evaluation: Calculating Precision
+2024-10-27 19:30:23,707 [INFO] src.evaluation: Precision: 0.9643866167285892
+2024-10-27 19:30:23,707 [INFO] src.evaluation: Calculating Recall
+2024-10-27 19:30:23,787 [INFO] src.evaluation: Recall: 0.9633990388938287
+2024-10-27 19:30:23,787 [INFO] src.evaluation: Calculating F1 Score
+2024-10-27 19:30:23,893 [INFO] src.evaluation: F1 Score: 0.9638925748500001
+2024-10-28 11:20:53,704 [INFO] steps.ingest_data: Ingesting data from C:\Users\vamsh\OneDrive\Desktop\Mlops_Financial\data\fraud_detection_dataset.csv
+2024-10-28 11:20:53,708 [ERROR] steps.ingest_data: Error while ingesting the data:[Errno 2] No such file or directory: 'C:\\Users\\vamsh\\OneDrive\\Desktop\\Mlops_Financial\\data\\fraud_detection_dataset.csv'
+2024-10-28 11:31:23,282 [INFO] steps.ingest_data: Ingesting data from C:\Users\vamsh\OneDrive\Desktop\Mlops_Financial\data\fraud_detection_dataset.csv
+2024-10-28 11:32:32,268 [INFO] src.model_dev: Model Training completed
+2024-10-28 11:32:32,275 [INFO] steps.model_train: Model saved at saved_model\model.pkl
+2024-10-28 11:32:35,261 [INFO] src.evaluation: Calculating Accuracy
+2024-10-28 11:32:35,292 [INFO] src.evaluation: Accuracy: 0.9638775
+2024-10-28 11:32:35,397 [INFO] src.evaluation: Calculating Precision
+2024-10-28 11:32:35,508 [INFO] src.evaluation: Precision: 0.9643866167285892
+2024-10-28 11:32:35,520 [INFO] src.evaluation: Calculating Recall
+2024-10-28 11:32:35,647 [INFO] src.evaluation: Recall: 0.9633990388938287
+2024-10-28 11:32:35,656 [INFO] src.evaluation: Calculating F1 Score
+2024-10-28 11:32:35,789 [INFO] src.evaluation: F1 Score: 0.9638925748500001
+2024-10-28 11:32:35,797 [INFO] steps.evaluation: metrics are saved to metrics.json file
+2024-10-28 11:36:24,968 [INFO] steps.ingest_data: Ingesting data from C:\Users\vamsh\OneDrive\Desktop\Mlops_Financial\data\fraud_detection_dataset.csv
+2024-10-28 11:36:33,065 [INFO] steps.ingest_data: Attempting to save the file at: artifacts\ingested_data.csv
+2024-10-28 11:36:49,704 [INFO] steps.ingest_data: File successfully saved to artifacts\ingested_data.csv
+2024-10-28 11:37:48,822 [INFO] src.model_dev: Model Training completed
+2024-10-28 11:37:48,826 [INFO] steps.model_train: Model saved at saved_model\model.pkl
+2024-10-28 11:37:51,928 [INFO] src.evaluation: Calculating Accuracy
+2024-10-28 11:37:51,949 [INFO] src.evaluation: Accuracy: 0.9638775
+2024-10-28 11:37:52,048 [INFO] src.evaluation: Calculating Precision
+2024-10-28 11:37:52,137 [INFO] src.evaluation: Precision: 0.9643866167285892
+2024-10-28 11:37:52,145 [INFO] src.evaluation: Calculating Recall
+2024-10-28 11:37:52,227 [INFO] src.evaluation: Recall: 0.9633990388938287
+2024-10-28 11:37:52,231 [INFO] src.evaluation: Calculating F1 Score
+2024-10-28 11:37:52,335 [INFO] src.evaluation: F1 Score: 0.9638925748500001
+2024-10-28 11:37:52,341 [INFO] steps.evaluation: metrics are saved to metrics.json file
+2024-10-28 11:44:14,229 [INFO] steps.ingest_data: Ingesting data from C:\Users\vamsh\OneDrive\Desktop\Mlops_Financial\data\fraud_detection_dataset.csv
+2024-10-28 11:44:19,128 [INFO] steps.ingest_data: Attempting to save the file at: artifacts\ingested_data.csv
+2024-10-28 11:44:32,749 [INFO] steps.ingest_data: File successfully saved to artifacts\ingested_data.csv
+2024-10-28 11:45:05,543 [INFO] src.model_dev: Model Training completed
+2024-10-28 11:45:05,546 [INFO] steps.model_train: Model saved at saved_model\model.pkl
+2024-10-28 11:45:07,567 [INFO] src.evaluation: Calculating Accuracy
+2024-10-28 11:45:07,586 [INFO] src.evaluation: Accuracy: 0.9638775
+2024-10-28 11:45:07,658 [INFO] src.evaluation: Calculating Precision
+2024-10-28 11:45:07,727 [INFO] src.evaluation: Precision: 0.9643866167285892
+2024-10-28 11:45:07,733 [INFO] src.evaluation: Calculating Recall
+2024-10-28 11:45:07,815 [INFO] src.evaluation: Recall: 0.9633990388938287
+2024-10-28 11:45:07,819 [INFO] src.evaluation: Calculating F1 Score
+2024-10-28 11:45:07,880 [INFO] src.evaluation: F1 Score: 0.9638925748500001
+2024-10-28 11:45:07,884 [INFO] steps.evaluation: metrics are saved to metrics.json file
