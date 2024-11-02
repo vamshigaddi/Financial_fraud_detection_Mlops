@@ -51,3 +51,15 @@
 2024-10-28 11:45:07,819 [INFO] src.evaluation: Calculating F1 Score
 2024-10-28 11:45:07,880 [INFO] src.evaluation: F1 Score: 0.9638925748500001
 2024-10-28 11:45:07,884 [INFO] steps.evaluation: metrics are saved to metrics.json file
+2024-10-29 15:07:17,551 [INFO] steps.ingest_data: Ingesting data from C:\Users\vamsh\OneDrive\Desktop\Mlops_Financial\data\fraud_detection_dataset.csv
+2024-10-29 15:08:24,718 [INFO] src.model_dev: Model Training completed
+2024-10-29 15:08:24,729 [INFO] steps.model_train: Model saved at saved_model\model.pkl
+2024-10-29 15:08:28,046 [INFO] src.evaluation: Calculating Accuracy
+2024-10-29 15:08:28,061 [INFO] src.evaluation: Accuracy: 0.9638775
+2024-10-29 15:08:28,150 [INFO] src.evaluation: Calculating Precision
+2024-10-29 15:08:28,231 [INFO] src.evaluation: Precision: 0.9643866167285892
+2024-10-29 15:08:28,239 [INFO] src.evaluation: Calculating Recall
+2024-10-29 15:08:28,328 [INFO] src.evaluation: Recall: 0.9633990388938287
+2024-10-29 15:08:28,336 [INFO] src.evaluation: Calculating F1 Score
+2024-10-29 15:08:28,442 [INFO] src.evaluation: F1 Score: 0.9638925748500001
+2024-10-29 15:08:28,450 [INFO] steps.evaluation: metrics are saved to metrics.json file

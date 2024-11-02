@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Fraud Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .autocomplete-container {
+            position: relative;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .autocomplete-dropdown {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .autocomplete-item {
+            padding: 8px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .autocomplete-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #result-message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+
+        .invalid-input {
+            border-color: #dc3545 !important;
+            background-color: #fff !important;
+        }
+
+        .invalid-input:focus {
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="animate__animated animate__fadeInDown">Financial Fraud Prediction</h2>
+        <form id="prediction-form" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="number" class="form-control" id="amount" name="amount" required>
+                    <div class="error-message" id="amount-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <div class="autocomplete-container">
+                        <input type="text" class="form-control" id="location" name="location" autocomplete="off" required>
+                        <div id="location-dropdown" class="autocomplete-dropdown"></div>
+                        <div class="error-message" id="location-error"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="device_type">Device Type:</label>
+                    <select class="form-control" id="device_type" name="device_type" required>
+                        {% for device in device_types %}
+                            <option value="{{ device }}">{{ device }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="error-message" id="device_type-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age" name="age" min="21" max="100" required>
+                    <div class="error-message" id="age-error"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="income">Income:</label>
+                    <input type="number" class="form-control" id="income" name="income" required>
+                    <div class="error-message" id="income-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="debt">Debt:</label>
+                    <input type="number" class="form-control" id="debt" name="debt" required>
+                    <div class="error-message" id="debt-error"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group" style="width: 100%;">
+                    <label for="credit_score">Credit Score:</label>
+                    <input type="number" class="form-control" id="credit_score" name="credit_score" min="0" max="1000" required>
+                    <div class="error-message" id="credit_score-error"></div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary animate__animated animate__fadeIn">Submit Prediction</button>
+        </form>
+        <div id="result-message"></div>
+    </div>
+
+    <script>
+        // Location autocomplete functionality
+        const locations = {{ locations | tojson }};
+        const locationInput = document.getElementById('location');
+        const dropdown = document.getElementById('location-dropdown');
+
+        locationInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            dropdown.innerHTML = '';
+            console.log("User typed:", query); // Check if this is logged
+
+            if (query) {
+                const filteredLocations = locations.filter(location =>
+                    location.toLowerCase().includes(query)
+                ).slice(0, 5);
+
+                filteredLocations.forEach(location => {
+                    const item = document.createElement('div');
+                    item.classList.add('autocomplete-item');
+                    item.textContent = location;
+
+                    item.addEventListener('click', function() {
+                        locationInput.value = location;
+                        dropdown.innerHTML = '';
+                        validateField(locationInput);
+                    });
+
+                    dropdown.appendChild(item);
+                });
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!locationInput.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.innerHTML = '';
+            }
+        });
+
+        // Validation functions
+        function validateAge(value) {
+            const age = parseInt(value);
+            return age >= 21 && age <= 100;
+        }
+
+        function validateCreditScore(value) {
+            const score = parseInt(value);
+            return score >= 0 && score <= 1000;
+        }
+
+        // Field validation with animation
+        function validateField(field) {
+            const errorElement = document.getElementById(`${field.id}-error`);
+            field.classList.remove('invalid-input', 'success-input');
+            errorElement.classList.remove('show');
+            errorElement.textContent = '';
+
+            if (!field.value) {
+                field.classList.add('invalid-input');
+                errorElement.textContent = 'This field is required';
+                errorElement.classList.add('show');
+                return false;
+            }
+
+            let isValid = true;
+            switch (field.id) {
+                case 'age':
+                    isValid = validateAge(field.value);
+                    if (!isValid) {
+                        errorElement.textContent = 'Age must be between 21 and 100';
+                    }
+                    break;
+                case 'credit_score':
+                    isValid = validateCreditScore(field.value);
+                    if (!isValid) {
+                        errorElement.textContent = 'Credit score must be between 0 and 1000';
+                    }
+                    break;
+                case 'amount':
+                    isValid = parseFloat(field.value) > 0;
+                    if (!isValid) {
+                        errorElement.textContent = 'Amount must be greater than 0';
+                    }
+                    break;
+                case 'income':
+                    isValid = parseFloat(field.value) >= 0;
+                    if (!isValid) {
+                        errorElement.textContent = 'Income must be a positive number';
+                    }
+                    break;
+                case 'debt':
+                    isValid = parseFloat(field.value) >= 0;
+                    if (!isValid) {
+                        errorElement.textContent = 'Debt must be a positive number';
+                    }
+                    break;
+            }
+
+            if (!isValid) {
+                field.classList.add('invalid-input');
+                errorElement.classList.add('show');
+            } else {
+                field.classList.add('success-input');
+            }
+            return isValid;
+        }
+
+        // Real-time validation for numeric fields
+        ['age', 'credit_score', 'amount', 'income', 'debt'].forEach(fieldId => {
+            document.getElementById(fieldId).addEventListener('input', function() {
+                validateField(this);
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('prediction-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+        
+            let isValid = true;
+            const formFields = this.querySelectorAll('input, select');
+        
+            formFields.forEach(field => {
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
+        
+            if (isValid) {
+                const formData = new FormData(this);
+                fetch('/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result-message').textContent = `Prediction: ${data.prediction}`;
+                    document.getElementById('result-message').style.display = 'block'; // Make sure it's visible
+                })
+                .catch(error => {
+                    document.getElementById('result-message').textContent = 'An error occurred. Please try again.';
+                    console.error('Error:', error);
+                });
+            }
+        });
+        
+    </script>
+</body>
+</html>

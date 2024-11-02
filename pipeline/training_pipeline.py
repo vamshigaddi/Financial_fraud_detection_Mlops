@@ -11,3 +11,4 @@ def training_pipeline(data_path:str):
     model = model_train(X_train,y_train)
     accuracy,precision,recall,f1_score = evaluate_model(model,X_test,y_test)
  
+ 

@@ -1,7 +1,8 @@
 import logging
 from abc import ABC, abstractmethod
 from typing import Union
-
+import os
+import joblib
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -44,17 +45,21 @@ class DataPreprocessStrategy(DataStrategy):
                 axis=1,
             )
             
-            # Initialize the LabelEncoder
-            label_encoder = LabelEncoder()
+            
+            # Initialize the LabelEncoders
+            location_encoder = LabelEncoder()
+            device_type_encoder = LabelEncoder()
 
             # Apply LabelEncoder to the 'location' column
-            data['location'] = label_encoder.fit_transform(data['location'])
+            data['location'] = location_encoder.fit_transform(data['location'])
 
             # Apply LabelEncoder to the 'device_type' column
-            data['device_type'] = label_encoder.fit_transform(data['device_type'])
-
-            # Select only numerical columns
-            #data = data.select_dtypes(include=[np.number])
+            data['device_type'] = device_type_encoder.fit_transform(data['device_type'])
+            
+            # Save the encoders
+            os.makedirs("saved_model", exist_ok=True)
+            joblib.dump(location_encoder, os.path.join("saved_model", "location_encoder.pkl"))
+            joblib.dump(device_type_encoder, os.path.join("saved_model", "device_type_encoder.pkl"))
 
             return data
 
