@@ -89,7 +89,7 @@ def predict():
     
     except Exception as e:
         print("Error:", str(e))
-        errors_total.inc()  # Increment the error counter
+        errors_total.inc()  # Increment the error countr 
         return jsonify({'error': 'An error occurred during prediction.'}), 500
 
 # Run app
