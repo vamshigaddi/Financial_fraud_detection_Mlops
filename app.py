@@ -25,8 +25,8 @@ print(type(model))
 # Load JSON data for dropdowns
 locations_path = os.path.join(dir_path, 'notebook', 'locations_data.json')
 device_types_path = os.path.join(dir_path, 'notebook', 'device_data.json')
-print("Locations JSON path:", locations_path)  # Debug print
-print("Device Types JSON path:", device_types_path)  # Debug print
+print("Locations JSON path:", locations_path)  
+print("Device Types JSON path:", device_types_path)  
 
 
 # Check if JSON files exist and load them
