@@ -15,9 +15,9 @@ metrics = PrometheusMetrics(app)
 # Load the model from the pickle file
 dir_path = os.getcwd()
 model_path = os.path.join(dir_path, 'saved_model', 'model.pkl')
-print("Model path:", model_path)  # Debug print
+print("Model path:", model_path) 
 
-with open(model_path, 'rb') as file:  # Open in binary mode
+with open(model_path, 'rb') as file: 
     model = joblib.load(file)
 
 print(type(model))
