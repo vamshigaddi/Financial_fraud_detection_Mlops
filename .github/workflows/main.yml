@@ -76,12 +76,12 @@ jobs:
           echo "Tagging image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           
           # Build the Docker image
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY
 
           echo "Pushing Docker image to ECR..."
           
           # Attempt to push the image
-          if docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG; then
+          if docker push $ECR_REGISTRY/$ECR_REPOSITORY ;then
             echo "Successfully pushed image to ECR."
           else
             echo "Error pushing image to ECR. Repository Name: $ECR_REPOSITORY"
