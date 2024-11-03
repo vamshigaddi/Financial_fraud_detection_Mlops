@@ -47,7 +47,7 @@ location_encoder = joblib.load(os.path.join(dir_path, 'saved_model', 'location_e
 device_type_encoder = joblib.load(os.path.join(dir_path, 'saved_model', 'device_type_encoder.pkl'))
 
 # Define metrics for custom monitoring
-predictions_total = Counter('predictions_total', 'Total number of predictions')  # Use Prometheus Counter
+predictions_total = Counter('predictions_total', 'Total number of predictions')
 errors_total = Counter('errors_total', 'Total number of errors encountered')
 
 # Define the route for the home page
