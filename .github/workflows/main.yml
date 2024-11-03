@@ -71,6 +71,8 @@ jobs:
           IMAGE_TAG: latest
         run: |
           echo "Building Docker image..."
+          echo "ECR Registry: $ECR_REGISTRY"
+          echo "ECR Repository: $ECR_REPOSITORY"
           echo "Tagging image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           
           # Build the Docker image
@@ -79,10 +81,14 @@ jobs:
           echo "Pushing Docker image to ECR..."
           
           # Attempt to push the image
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG || {
+          if docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG; then
+            echo "Successfully pushed image to ECR."
+          else
             echo "Error pushing image to ECR. Repository Name: $ECR_REPOSITORY"
-            echo "ECR Registry ID: $ECR_REGISTRY"
+            echo "ECR Registry: $ECR_REGISTRY"
+            echo "Full Image URI: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
             exit 1
+          fi
 
   Continuous-Deployment:
     needs: build-and-push-ecr-image
@@ -126,5 +132,3 @@ jobs:
         run: |
           echo "Cleaning up unused Docker images and containers..."
           docker system prune -f
-
-
