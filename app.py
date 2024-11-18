@@ -23,8 +23,8 @@ with open(model_path, 'rb') as file:
 print(type(model))
 
 # Load JSON data for dropdowns
-locations_path = os.path.join(dir_path, 'notebook', 'locations_data.json')
-device_types_path = os.path.join(dir_path, 'notebook', 'device_data.json')
+locations_path = os.path.join(dir_path,  'locations_data.json')
+device_types_path = os.path.join(dir_path,  'device_data.json')
 print("Locations JSON path:", locations_path)  
 print("Device Types JSON path:", device_types_path)  
 
@@ -94,4 +94,4 @@ def predict():
 
 # Run app
 if __name__ == '__main__':
-    app.run(debug=False,host='0.0.0.0', port=5000)
+    app.run(debug=False,host='0.0.0.0', port=8080)

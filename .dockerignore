@@ -1,0 +1,12 @@
+# Ignore Python virtual environments
+myvenv/
+venv/
+
+# Ignore compiled files
+__pycache__/
+*.pyc
+
+#mlruns
+mlruns/
+
+data/
