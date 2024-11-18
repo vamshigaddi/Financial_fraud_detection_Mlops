@@ -1,6 +1,8 @@
 # Financial Fraud Detection MLOps
 ## Overview
-This project is a robust Financial Fraud Detection MLOps pipeline that leverages best practices in code structure, object-oriented programming (OOP), and ML lifecycle automation. The pipeline is designed for scalable and reproducible ML workflows, incorporating advanced tools for experiment tracking, monitoring, CI/CD, and deployment.
+In the rapidly evolving financial landscape, fraud has become a critical challenge, costing businesses billions annually. Detecting financial fraud in real-time requires accurate, scalable, and reproducible machine learning solutions that adapt to evolving fraud patterns.
+
+This project aims to address these challenges by developing a Financial Fraud Detection MLOps pipeline. The pipeline integrates industry best practices in machine learning, such as efficient code structuring, object-oriented programming (OOP), and end-to-end automation of the ML lifecycle. It leverages state-of-the-art tools for experiment tracking, continuous monitoring, CI/CD, and seamless deployment to ensure scalability, reliability, and reproducibility of ML workflows.
 ## Key Features
 - MLflow for comprehensive experiment tracking and version control.
 - Prometheus and Grafana for real-time model monitoring and visualization.
