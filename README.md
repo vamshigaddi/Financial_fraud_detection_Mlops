@@ -77,7 +77,7 @@ python app.py
 docker build -t fraud-detection-app .
 ```
 ```bash
-docker run -p 5000:5000 fraud-detection-app
+docker run -p 8080:8080 fraud-detection-app
 ```
 ### 6. Docker compose
 - run docker compose for running all apps at once
@@ -86,7 +86,7 @@ docker run -p 5000:5000 fraud-detection-app
 ```
 ### 7.Access Services:
 ```bash
-Web App: http://localhost:5000
+Web App: http://localhost:8080
 ```
 ```bash
 Prometheus: http://localhost:9090
