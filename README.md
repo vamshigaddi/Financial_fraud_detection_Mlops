@@ -10,6 +10,10 @@ This project aims to address these challenges by developing a Financial Fraud De
 - Docker for containerizing the entire application for portability and consistency.
 - GitHub Actions for automated CI/CD, with seamless deployment to an AWS EC2 instance.
 
+## Architecture
+![Architecture Diagram](architecture.png "Project Architecture")
+
+
 ## Project Structure
 ```bash
 financial-fraud-detection-mlops/
